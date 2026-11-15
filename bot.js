@@ -4,7 +4,7 @@ function createBot() {
     const bot = mineflayer.createBot({
         host: 'foreverworld111.aternos.me', // <--- REEMPLAZA ESTO POR LA IP DE TU SERVER
         port: 34179,                // Puerto predeterminado de Minecraft
-        username: 'lol',    // Nombre genérico del bot/NPC dentro del juego
+        username: 'botlol',    // Nombre genérico del bot/NPC dentro del juego
         version: false              // Autodetecta la versión exacta del servidor (1.8 a 1.21+)
     });
 
@@ -67,29 +67,3 @@ function createBot() {
 }
 
 createBot();
-
-
-name: Minecraft NPC Bot 24/7
-
-on:
-  push:
-    branches: [ main ]
-  workflow_dispatch: # Permite encender el NPC de forma manual desde el panel web
-
-jobs:
-  run-bot:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Clonar repositorio
-      uses: actions/checkout@v4
-
-    - name: Configurar Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 18
-
-    - name: Instalar dependencias de Mineflayer
-      run: npm install mineflayer
-
-    - name: Ejecutar script del NPC
-      run: node bot.js
